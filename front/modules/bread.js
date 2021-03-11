@@ -28,10 +28,6 @@ class Bread {
     }
 }
 
-
-(() => {
-    const app = window.APP
-    if (app.appName === '2021_modular') {
-        app.injectModuleLoader(loader)
-    }
-})()
+export {
+    loader
+}
