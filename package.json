@@ -1,0 +1,27 @@
+{
+  "name": "2021_modularJs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/portfolio-y0711/2021_modularJs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/portfolio-y0711/2021_modularJs/issues"
+  },
+  "homepage": "https://github.com/portfolio-y0711/2021_modularJs#readme",
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.13.8",
+    "@babel/preset-env": "^7.13.10",
+    "babel-plugin-dynamic-import-node": "^2.3.3"
+  }
+}
