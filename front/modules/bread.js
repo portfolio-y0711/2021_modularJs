@@ -1,7 +1,10 @@
 class Bread {
     self
     wrapper
-    props
+    props = {
+        pathQue: [0],
+        pathNameMap: ['Root']
+    }
     moduleName = 'BREAD'
     constructor() {
        this.self = this

@@ -18,10 +18,11 @@
   },
   "homepage": "https://github.com/portfolio-y0711/2021_modularJs#readme",
   "devDependencies": {
-    "jest": "^26.6.3",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-transform-modules-commonjs": "^7.13.8",
     "@babel/preset-env": "^7.13.10",
-    "babel-plugin-dynamic-import-node": "^2.3.3"
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "cypress": "^6.6.0",
+    "jest": "^26.6.3"
   }
 }
