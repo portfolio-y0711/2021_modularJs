@@ -1,33 +1,14 @@
-const loader = (() => {
-    let libName = ''
-    let moduleName = 'BREAD'
-    const load = (app) => new Bread(app)
-    return {libName, moduleName, load}
-})()
-
 class Bread {
     self
-    app
-    store
     wrapper
-    constructor(app) {
+    moduleName = 'BREAD'
+    constructor() {
        this.self = this
-       this.app = app
        this.wrapper = document.querySelector('bread')
-       this.state = {
-           pathQue: [],
-           pathNameMap: new Map()
-       }
-       this.app.assignReducer((state = { 'bread': this.state }, action) => {
-            return ({
-                ...state
-            })
-       })
-    }
-    render() {
+       LOG(`MOD`, `${this.moduleName}`, `Module Created`)
     }
 }
 
 export {
-    loader
+    Bread
 }

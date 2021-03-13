@@ -1,32 +1,20 @@
-const loader = (() => {
-    let libName = ''
-    let moduleName = ''
-    let adaptorName = 'ADT/API'
-    let proxy
-
-    const load = (app) => {
-        let baseUrl = 'http://localhost:5000'
-        return (() => 
-            ({
-                get: async(path) => {
-                    if (path === 'root' || path === 0) {
-                        return await new Promise(res => setTimeout(res, 500, data.queryRoot))
-                    } else {
-                        return await new Promise(res => setTimeout(res, 500, data[`query${path}`]))
-                    }
-                }
-            })
-        )()
+class Api {
+    adaptorName = 'ADT/API'
+    constructor() {
+        LOG(`ADT`, `${this.adaptorName}`, `Adaptor Created`) 
     }
-    return {libName, moduleName, adaptorName, load}
-})()
-
-;(() => {
-    const app = window.APP
-    if (app.appName === '2021_modular') {
-        app.injectAdaptorLoader(loader)
+    get = async(path) => {
+        if (path === 'root' || path === 0) {
+            return await new Promise(res => setTimeout(res, 500, data.queryRoot))
+        } else {
+            return await new Promise(res => setTimeout(res, 500, data[`query${path}`]))
+        }
     }
-})()
+}
+
+export {
+    Api
+}
 
 const data = {
     queryRoot: [
