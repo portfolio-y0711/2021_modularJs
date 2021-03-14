@@ -6,8 +6,23 @@ context('Front Page', () => {
   })
 
   it('render breadcrumb with "Root"', () => {
-    cy.get('li')
-      .eq(0)
+    cy.get('bread')
+      .find('li')
+      .first()
       .should('contain', 'Root')
+  })
+
+  it('render finder with folders: "monorepo" and "assets"', () => {
+    cy.get('finder')
+      .find('.folder')
+      .as('folders')
+    
+    cy.get('@folders')
+      .eq(0)
+      .should('contain', 'monorepo')
+
+    cy.get('@folders')
+      .eq(1)
+      .should('contain', 'assets')
   })
 })
