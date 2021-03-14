@@ -1,6 +1,7 @@
 class Finder {
     self
     wrapper
+    store
     props = {
         items: undefined,
         parentDir: undefined
@@ -57,7 +58,12 @@ class Finder {
             const [folder, file] = [[...this.wrapper.querySelectorAll('div.folder')], [...this.wrapper.querySelectorAll('div.file')]]
         }
     }
-    componentDidMount() {
+    async componentDidMount() {
+        const items = await API.get(0)
+        this.store.dispatch({ 
+            type: 'items',
+            payload: items
+        })
     }
 }
 

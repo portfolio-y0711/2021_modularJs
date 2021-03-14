@@ -21,11 +21,13 @@ class App {
             return Object.assign(acc, module.props)
         }, {})
         this.store.state = initialState
+
         this.modules.forEach(module => { 
+            module.store = this.store
+            this.store.listeners.push(() => module.render())
             if (Object.getPrototypeOf(module).hasOwnProperty('componentDidMount')) {
                 module.componentDidMount()
             }
-            module.render() 
         })
     }
 }

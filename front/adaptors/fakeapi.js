@@ -12,9 +12,7 @@ class Api {
     }
 }
 
-export {
-    Api
-}
+const API = new Api()
 
 const data = {
     queryRoot: [
