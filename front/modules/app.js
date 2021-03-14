@@ -17,8 +17,15 @@ class App {
         return this
     }
     start() {
-        this.modules.forEach(module => {
-            module.render()
+        const initialState = this.modules.reduce((acc, module) => {
+            return Object.assign(acc, module.props)
+        }, {})
+        this.store.state = initialState
+        this.modules.forEach(module => { 
+            if (Object.getPrototypeOf(module).hasOwnProperty('componentDidMount')) {
+                module.componentDidMount()
+            }
+            module.render() 
         })
     }
 }

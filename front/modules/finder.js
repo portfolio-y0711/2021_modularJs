@@ -57,6 +57,8 @@ class Finder {
             const [folder, file] = [[...this.wrapper.querySelectorAll('div.folder')], [...this.wrapper.querySelectorAll('div.file')]]
         }
     }
+    componentDidMount() {
+    }
 }
 
 export {
