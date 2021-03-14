@@ -14,9 +14,12 @@ class Store {
             default: 
                 return this.state
         }
-        this.listeners.forEach(notify => {
-            notify()
+        
+        this.listeners.forEach(listener => {
+            listener.props = this.state
+            listener.render()
         })
+
     }
 }
 

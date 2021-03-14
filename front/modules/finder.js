@@ -14,6 +14,7 @@ class Finder {
     }
     render() {
         const { items, parentDir } = this.props
+
         if (items === undefined) {
             return
         } else {
@@ -53,13 +54,13 @@ class Finder {
                 </div>
                 ${_items.map(itemView).join('')}
             `)
-
             this.wrapper.insertAdjacentHTML('beforeend', finderView)
             const [folder, file] = [[...this.wrapper.querySelectorAll('div.folder')], [...this.wrapper.querySelectorAll('div.file')]]
         }
     }
     async componentDidMount() {
         const items = await API.get(0)
+
         this.store.dispatch({ 
             type: 'items',
             payload: items
