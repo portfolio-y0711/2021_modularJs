@@ -36,7 +36,7 @@ class Finder {
 
             const itemView = (item => {
                 return (`
-                <div id="${item.id}" class="${item.className}">
+                <div id="${item.id}" class="${item.className}" onclick="">
                     <i class="material-icons">${item.icon}
                         <p class="cooltip">0 folders / 0 files</p>
                     </i>
@@ -60,7 +60,6 @@ class Finder {
     }
     async componentDidMount() {
         const items = await API.get(0)
-
         this.store.dispatch({ 
             type: 'items',
             payload: items
