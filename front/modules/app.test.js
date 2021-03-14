@@ -17,7 +17,7 @@ describe('Component: App', () => {
             }
         ]
         app.injectModules(fakeModules)
-        const stubStore = { state: undefined }
+        const stubStore = { state: undefined, listeners: [] }
         app.injectStore(stubStore)
         app.start()
         expect([...Object.entries(stubStore.state)]).toEqual([['module1', 'prop1'], ['module2', 'prop2']])

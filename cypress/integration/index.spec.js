@@ -25,4 +25,17 @@ context('Front Page', () => {
       .eq(1)
       .should('contain', 'assets')
   })
+
+  it('rerender finder with new folders & files when "monorepo" folder clicked', () => {
+    cy.get('finder')
+      .find('.folder')
+      .as('folders')
+    
+    cy.get('@folders')
+      .first()
+      .click('center')
+    
+    cy.get('@folders')
+
+  })
 })
