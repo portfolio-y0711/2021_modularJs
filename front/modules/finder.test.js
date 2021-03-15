@@ -1,4 +1,4 @@
-import { expect, jest } from '@jest/globals'
+import { jest } from '@jest/globals'
 import { Finder } from './finder.js'
 const path = require('path')
 const fs = require('fs')
@@ -71,6 +71,19 @@ describe('Component: Finder', () => {
                     "payload": [ { "filepath": null, "id": 1, "parent": null, "title": "monorepo", "type": "DIRECTORY", }, ],
                     "type": "items",
             })
+        })
+    })
+    describe('after finder component rendered', () => {
+        it('when div.folder clicked, it invokes global.handler.intoDir()', async() => {
+            const finder = new Finder()
+            finder.props = { items: [ { id: 1, type: 'DIRECTORY', title: 'monorepo', filepath: null, parent: 0 } ], parentDir: 0 }
+            const mockIntoDir = jest.fn()
+            global.handler = { intoDir: mockIntoDir }
+            await finder.render()
+            const event = document.createEvent('HTMLEvents')
+            event.initEvent('click', false, true)
+            finder.wrapper.querySelector('.folder').dispatchEvent(event)
+            expect(mockIntoDir).toHaveBeenCalledWith({ id: 1, pathName: 'monorepo' })
         })
     })
 })

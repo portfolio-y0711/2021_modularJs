@@ -36,7 +36,7 @@ class Finder {
 
             const itemView = (item => {
                 return (`
-                <div id="${item.id}" class="${item.className}" onclick="">
+                <div id="${item.id}" class="${item.className}" onclick="window.handler.intoDir({ id: ${item.id}, pathName: '${item.title}' })">
                     <i class="material-icons">${item.icon}
                         <p class="cooltip">0 folders / 0 files</p>
                     </i>
@@ -57,6 +57,9 @@ class Finder {
             this.wrapper.insertAdjacentHTML('beforeend', finderView)
             const [folder, file] = [[...this.wrapper.querySelectorAll('div.folder')], [...this.wrapper.querySelectorAll('div.file')]]
         }
+    }
+    clicked() {
+
     }
     async componentDidMount() {
         const items = await API.get(0)
