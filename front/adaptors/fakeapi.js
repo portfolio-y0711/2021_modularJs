@@ -10,6 +10,11 @@ class Api {
             return await new Promise(res => setTimeout(res, 500, data[`query${path}`]))
         }
     }
+    getFile = async(path) => {
+        const response = await fetch(path)
+        const blob = await response.blob()
+        return blob
+    }
 }
 
 const API = new Api()
@@ -25,34 +30,43 @@ const data = {
             type: 'DIRECTORY',
             title: 'monorepo',
             filepath: null,
-            parent: null
-        }, {
+            parent: 0
+        }, 
+        {
             id: 3,
             type: 'DIRECTORY',
             title: 'assets',
             filepath: null,
-            parent: null
-        }
+            parent: 0
+        },
+        {
+            id: 4,
+            type: 'FILE',
+            title: 'mono.png',
+            filepath: './assets/mono.png',
+            parent: 1
+        }, 
     ],
     query1: [
         {
             id: 11,
             type: 'FILE',
             title: 'README.md',
-            filepath: './assets/walldog.png',
-            parent: 0
-        }, {
+            filepath: './assets/not.jpg',
+            parent: 1
+        }, 
+        {
             id: 12,
             type: 'FILE',
             title: 'package.json',
-            filepath: './assets/package.json',
-            parent: 0
+            filepath: './assets/not.jpg',
+            parent: 1
         }, {
             id: 13,
             type: 'DIRECTORY',
             title: 'packages',
             filepath: null,
-            parent: null
+            parent: 1
         }
 
     ],
@@ -60,14 +74,15 @@ const data = {
         {
             id: 31,
             type: 'FILE',
-            title: 'pic01.png',
-            filepath: './assets/screenshot01.png',
+            title: 'walldog.jpg',
+            filepath: './assets/walldog.jpg',
             parent: 3
-        }, {
+        }, 
+        {
             id: 32,
             type: 'FILE',
-            title: 'pic02.png',
-            filepath: './assets/screenshot02.png',
+            title: 'kutecow.jpg',
+            filepath: './assets/kutecow.jpg',
             parent: 3
         }
     ],
@@ -99,7 +114,7 @@ const data = {
             id: 1311,
             type: 'FILE',
             title: 'package.json',
-            filepath: './assets/1311/package.png',
+            filepath: './assets/not.jpg',
             parent: 131
         }
     ],
@@ -108,15 +123,15 @@ const data = {
             id: 1321,
             type: 'FILE',
             title: 'tsconfig.json',
-            filepath: './assets/1311/tsconfig.json',
-            parent: 131
+            filepath: './assets/not.jpg',
+            parent: 132
         },
         {
             id: 1322,
             type: 'FILE',
             title: 'package.json',
-            filepath: './assets/1311/package.png',
-            parent: 131
+            filepath: './assets/not.jpg',
+            parent: 132
         }
     ],
     query133: [
@@ -124,15 +139,15 @@ const data = {
             id: 1331,
             type: 'FILE',
             title: 'tsconfig.json',
-            filepath: './assets/1311/tsconfig.json',
-            parent: 131
+            filepath: './assets/not.jpg',
+            parent: 133
         },
         {
             id: 1332,
             type: 'FILE',
             title: 'package.json',
-            filepath: './assets/1311/package.png',
-            parent: 131
+            filepath: './assets/not.jpg',
+            parent: 133
         }
     ]
 }

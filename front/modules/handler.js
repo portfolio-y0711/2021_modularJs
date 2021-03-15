@@ -76,6 +76,13 @@ class PathHandler {
         const { currentDir: _currentDir, parentDir: _parentDir, pathQue: _pathQue, pathNameMap: _pathNameMap } = this.store.getState()
         LOG('','', `\n# goto(${id})\n\ncurrentDir: ${_currentDir}\nparentDir: ${_parentDir}\npathQue: ${_pathQue}\npathNameMap: ${JSON.stringify(_pathNameMap)}`)
     }
+
+    async openFile(id) {
+        const { currentDir } = this.store.getState()
+        const file = (await this.api.get(currentDir)).filter(file => file.id === parseInt(id))[0]
+        const blob = await this.api.getFile(file.filepath) 
+        return blob
+    }
 }
 
 export {

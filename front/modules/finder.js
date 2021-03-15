@@ -41,7 +41,7 @@ class Finder {
 
             const itemView = (item => {
                 return (`
-                <div id="${item.id}" class="${item.className}" onclick="window.handler.intoDir({ id: ${item.id}, pathName: '${item.title}' })">
+                <div id="${item.id}" class="${item.className}" onclick="('${item.type}' === 'FILE') ? window.modal.openFile(${item.id}) : window.handler.intoDir({ id: ${item.id}, pathName: '${item.title}' })">
                     <i class="material-icons">${item.icon}
                         <p class="cooltip">0 folders / 0 files</p>
                     </i>
@@ -66,15 +66,6 @@ class Finder {
 
     componentDidMount() {
         this.handler.intoDir({ id: 0, pathName: 'Root' })
-        // const items = await this.api.get(0)
-        // this.store.dispatch({
-        //     type: 'intoDir',
-        //     payload: {
-        //         currentDir: 0,
-        //         parentDir: -1,
-        //         items: [...items]
-        //     }
-        // })
     }
 }
 
