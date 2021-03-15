@@ -8,6 +8,10 @@ class App {
        this.self = this 
        this.modules = modules 
     }
+    injectApi(api) {
+        this.api = api
+        return this
+    }
     injectStore(store) {
         this.store = store
         return this
@@ -24,6 +28,7 @@ class App {
 
         this.modules.forEach(module => { 
             module.store = this.store
+            module.api = this.api
             this.store.listeners.push(module)
             if (Object.getPrototypeOf(module).hasOwnProperty('componentDidMount')) {
                 module.componentDidMount()

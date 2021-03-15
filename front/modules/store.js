@@ -8,11 +8,15 @@ class Store {
     getState = () => this.state
     dispatch = (action) => {
         switch(action.type) {
-            case 'items': 
-                this.state = { ...this.state, ...{ ['items']: action.payload } }
+            case 'intoDir':
+                this.state = { ...this.state, ...{ items: action.payload.items, currentDir: action.payload.currentDir, parentDir: action.payload.parentDir, pathQue: action.payload.pathQue, pathNameMap: action.payload.pathNameMap } }
                 break
-            default: 
-                return this.state
+            case 'outOfDir':
+                this.state = { ...this.state, ...{ items: action.payload.items, currentDir: action.payload.currentDir, parentDir: action.payload.parentDir, pathQue: action.payload.pathQue, pathNameMap: action.payload.pathNameMap } }
+                break
+            case 'goto':
+                this.state = { ...this.state, ...{ items: action.payload.items, currentDir: action.payload.currentDir, parentDir: action.payload.parentDir, pathQue: action.payload.pathQue, pathNameMap: action.payload.pathNameMap } }
+                break
         }
         
         this.listeners.forEach(listener => {

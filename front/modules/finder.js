@@ -1,14 +1,18 @@
 class Finder {
     self
+    api
     wrapper
+    handler
     store
     props = {
+        currentDir: 0,
         items: undefined,
         parentDir: undefined
     }
     moduleName = 'FINDER'
-    constructor() {
+    constructor(handler) {
         this.self = this
+        this.handler = handler
         this.wrapper = document.querySelector('finder')
         LOG(`MOD`, `${this.moduleName}`, `Module Created`)
     }
@@ -45,29 +49,32 @@ class Finder {
                 </div>`)
             })
             
-            const finderView = (
-                `<div id="revert">
+            const finderView = (items) => (
+                `<div id="revert" onclick="window.handler.outOfDir()">
                     <div class="revert">
                         <i class="material-icons">arrow_left
                             <p class="cooltip">to previous</p>
                         </i>
                     </div>
                 </div>
-                ${_items.map(itemView).join('')}
+                ${items.map(itemView).join('')}
             `)
-            this.wrapper.insertAdjacentHTML('beforeend', finderView)
+            this.wrapper.insertAdjacentHTML('beforeend', finderView(_items))
             const [folder, file] = [[...this.wrapper.querySelectorAll('div.folder')], [...this.wrapper.querySelectorAll('div.file')]]
         }
     }
-    clicked() {
 
-    }
-    async componentDidMount() {
-        const items = await API.get(0)
-        this.store.dispatch({ 
-            type: 'items',
-            payload: items
-        })
+    componentDidMount() {
+        this.handler.intoDir({ id: 0, pathName: 'Root' })
+        // const items = await this.api.get(0)
+        // this.store.dispatch({
+        //     type: 'intoDir',
+        //     payload: {
+        //         currentDir: 0,
+        //         parentDir: -1,
+        //         items: [...items]
+        //     }
+        // })
     }
 }
 

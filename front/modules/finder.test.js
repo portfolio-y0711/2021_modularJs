@@ -1,4 +1,3 @@
-import { jest } from '@jest/globals'
 import { Finder } from './finder.js'
 const path = require('path')
 const fs = require('fs')
@@ -27,10 +26,8 @@ describe('Component: Finder', () => {
         it('finder component render div items with .folder & .file ', () => {
             const finder = new Finder()
             finder.props = {
-                items: [ 
-                    { id: 1, type: 'DIRECTORY', title: 'monorepo', filepath: null, parent: 0 }, 
-                    { id: 4, type: 'FILE', title: 'mono.png', filepath: './assets/mono.png', parent: 1 }, 
-                ],
+                items: [ { id: 1, type: 'DIRECTORY', title: 'monorepo', filepath: null, parent: 0 }, 
+                    { id: 4, type: 'FILE', title: 'mono.png', filepath: './assets/mono.png', parent: 1 }, ],
                 parentDir: 0
             }
             finder.render()
@@ -52,12 +49,13 @@ describe('Component: Finder', () => {
         })
     })
     describe('when finder component mounted', () => {
-        it('it will fetch items from global API object', () => {
+        it('it will fetch items from global API object', async() => {
+            const items = []
             const finder = new Finder()
-            const mockApiGet = jest.fn()
+            const mockApiGet = jest.fn(() => ([]))
             global.API = { get: mockApiGet }
             finder.store = { dispatch: () => undefined }
-            finder.componentDidMount()
+            await finder.componentDidMount()
             expect(mockApiGet).toBeCalledWith(0)
         })
 
@@ -68,8 +66,12 @@ describe('Component: Finder', () => {
             finder.store = { dispatch: mockDispatch }
             await finder.componentDidMount()
             expect(mockDispatch).toHaveBeenCalledWith({
-                    "payload": [ { "filepath": null, "id": 1, "parent": null, "title": "monorepo", "type": "DIRECTORY", }, ],
-                    "type": "items",
+                    payload: {
+                        items: [ { filepath: null, id: 1, parent: null, title: 'monorepo', type: 'DIRECTORY' } ],
+                        currentDir: 0,
+                        parentDir: -1,
+                    },
+                    type: 'items',
             })
         })
     })

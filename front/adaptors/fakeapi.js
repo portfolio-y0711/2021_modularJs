@@ -1,7 +1,7 @@
 class Api {
     adaptorName = 'ADT/API'
     constructor() {
-        LOG(`ADT`, `${this.adaptorName}`, `Adaptor Created`) 
+        // LOG(`ADT`, `${this.adaptorName}`, `Adaptor Created`)
     }
     get = async(path) => {
         if (path === 'root' || path === 0) {
@@ -13,6 +13,10 @@ class Api {
 }
 
 const API = new Api()
+
+export {
+    Api
+}
 
 const data = {
     queryRoot: [
