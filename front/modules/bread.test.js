@@ -39,4 +39,21 @@ describe('Component: Bread', () => {
             expect([...lists].map(li => li.querySelector('a').textContent)).toContain('Root')
         })
     })
+    describe('after bread component rendered', () => {
+        it('when li clicked, it invokes global.handler.intoDir()', async() => {
+            const bread = new Bread()
+            bread.props = {
+                pathQue: [0],
+                pathNameMap: { '0': 'Root' }
+            }
+            bread.render()
+            const mockGoto = jest.fn()
+            global.handler = { goto: mockGoto }
+            await bread.render()
+            const event = document.createEvent('HTMLEvents')
+            event.initEvent('click', false, true)
+            bread.wrapper.querySelector('li').dispatchEvent(event)
+            expect(mockGoto).toHaveBeenCalledWith({ id: 0 })
+        })
+    })
 })
