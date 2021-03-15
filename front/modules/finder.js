@@ -18,7 +18,6 @@ class Finder {
     }
     render() {
         const { items, parentDir } = this.props
-
         if (items === undefined) {
             return
         } else {

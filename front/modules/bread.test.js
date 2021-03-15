@@ -53,7 +53,7 @@ describe('Component: Bread', () => {
             const event = document.createEvent('HTMLEvents')
             event.initEvent('click', false, true)
             bread.wrapper.querySelector('li').dispatchEvent(event)
-            expect(mockGoto).toHaveBeenCalledWith({ id: 0 })
+            expect(mockGoto).toHaveBeenCalledWith(0)
         })
     })
 })

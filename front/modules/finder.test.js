@@ -49,30 +49,13 @@ describe('Component: Finder', () => {
         })
     })
     describe('when finder component mounted', () => {
-        it('it will fetch items from global API object', async() => {
+        it('it will invoke handler.intoDir()', async() => {
             const items = []
             const finder = new Finder()
-            const mockApiGet = jest.fn(() => ([]))
-            global.API = { get: mockApiGet }
-            finder.store = { dispatch: () => undefined }
+            const mockIntoDir = jest.fn()
+            finder.handler = { intoDir: mockIntoDir }
             await finder.componentDidMount()
-            expect(mockApiGet).toBeCalledWith(0)
-        })
-
-        it('it will dispatch items fetched via API', async() => {
-            const finder = new Finder()
-            global.API = { get: (any) => ([{ id: 1, type: 'DIRECTORY', title: 'monorepo', filepath: null, parent: null }]) }
-            const mockDispatch = jest.fn()
-            finder.store = { dispatch: mockDispatch }
-            await finder.componentDidMount()
-            expect(mockDispatch).toHaveBeenCalledWith({
-                    payload: {
-                        items: [ { filepath: null, id: 1, parent: null, title: 'monorepo', type: 'DIRECTORY' } ],
-                        currentDir: 0,
-                        parentDir: -1,
-                    },
-                    type: 'items',
-            })
+            expect(mockIntoDir).toBeCalledWith({ id: 0, pathName: 'Root' })
         })
     })
     describe('after finder component rendered', () => {
