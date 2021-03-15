@@ -29,13 +29,21 @@ context('Front Page', () => {
   it('rerender finder with new folders & files when "monorepo" folder clicked', () => {
     cy.get('finder')
       .find('.folder')
-      .as('folders')
-    
-    cy.get('@folders')
-      .first()
+      .eq(0)
+      .click('center')
+
+    cy.get('finder')
+      .find('.folder')
+      .should('contain', 'packages')
+
+    cy.get('finder')
+      .find('.folder')
       .click('center')
     
-    cy.get('@folders')
-
+    cy.wait(1000)
+    cy.get('finder')
+      .find('.folder')
+      .eq(0)
+      .should('contain', 'front')
   })
 })

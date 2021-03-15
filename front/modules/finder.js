@@ -18,6 +18,7 @@ class Finder {
         if (items === undefined) {
             return
         } else {
+            this.wrapper.innerHTML = ''
             const _items = items.map(({ id, type, title, filepath, parent }) => {
                 const props = {}
                 if (type === 'DIRECTORY') {

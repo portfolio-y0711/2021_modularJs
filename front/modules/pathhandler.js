@@ -2,16 +2,16 @@ class PathHandler {
     self
     store
     moduleName = 'HANDLER'
-    constructor() {
+    constructor(store) {
         this.self = this
+        this.store = store
         LOG(`MOD`, `${this.moduleName}`, `Module Created`)
     }
-    async intoDir({ id, pathName }) {
-        const { FINDER: { currentDir, parentDir }, BREAD: { pathQue, pathNameMap } } = store.getState()
-        const items = await APIj.get(id)
-        console.log(id)
-        console.log(pathName)
+    intoDir({ id, pathName }) {
+        const items = await API.get(id)
+        this.store.dispatch({ type: 'items', payload: items })
     }
+
 
 }
 
