@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently 'http-server ./front' 'node ./back/bin/www'",
+    "start:frontonly": "http-server ./front",
     "test": "jest"
   },
   "repository": {
@@ -22,7 +24,9 @@
     "@babel/plugin-transform-modules-commonjs": "^7.13.8",
     "@babel/preset-env": "^7.13.10",
     "babel-plugin-dynamic-import-node": "^2.3.3",
+    "concurrently": "^6.0.0",
     "cypress": "^6.6.0",
+    "http-server": "^0.12.3",
     "jest": "^26.6.3"
   }
 }

@@ -23,8 +23,8 @@ class PathHandler {
                 pathNameMap: { ...pathNameMap, ...{ [`${id}`]: pathName } }
             }
         })
-        const { currentDir: _currentDir, parentDir: _parentDir, pathQue: _pathQue, pathNameMap: _pathNameMap } = this.store.getState()
-        LOG('','', `\n# intoDir()\n\ncurrentDir: ${_currentDir}\nparentDir: ${_parentDir}\npathQue: ${_pathQue}\npathNameMap: ${JSON.stringify(_pathNameMap)}`)
+        // const { currentDir: _currentDir, parentDir: _parentDir, pathQue: _pathQue, pathNameMap: _pathNameMap } = this.store.getState()
+        // LOG('','', `\n# intoDir()\n\ncurrentDir: ${_currentDir}\nparentDir: ${_parentDir}\npathQue: ${_pathQue}\npathNameMap: ${JSON.stringify(_pathNameMap)}`)
     }
     async outOfDir() {
         const { currentDir, parentDir, pathQue, pathNameMap } = this.store.getState()
@@ -46,8 +46,8 @@ class PathHandler {
             }
         })
 
-        const { currentDir: _currentDir, parentDir: _parentDir, pathQue: _pathQue, pathNameMap: _pathNameMap } = this.store.getState()
-        LOG('','', `\n# outOfDir()\n\ncurrentDir: ${_currentDir}\nparentDir: ${_parentDir}\npathQue: ${_pathQue}\npathNameMap: ${JSON.stringify(_pathNameMap)}`)
+        // const { currentDir: _currentDir, parentDir: _parentDir, pathQue: _pathQue, pathNameMap: _pathNameMap } = this.store.getState()
+        // LOG('','', `\n# outOfDir()\n\ncurrentDir: ${_currentDir}\nparentDir: ${_parentDir}\npathQue: ${_pathQue}\npathNameMap: ${JSON.stringify(_pathNameMap)}`)
     }
     async goto(id) {
         const { currentDir, parentDir, pathQue, pathNameMap } = this.store.getState()
@@ -73,8 +73,8 @@ class PathHandler {
             }
         })
 
-        const { currentDir: _currentDir, parentDir: _parentDir, pathQue: _pathQue, pathNameMap: _pathNameMap } = this.store.getState()
-        LOG('','', `\n# goto(${id})\n\ncurrentDir: ${_currentDir}\nparentDir: ${_parentDir}\npathQue: ${_pathQue}\npathNameMap: ${JSON.stringify(_pathNameMap)}`)
+        // const { currentDir: _currentDir, parentDir: _parentDir, pathQue: _pathQue, pathNameMap: _pathNameMap } = this.store.getState()
+        // LOG('','', `\n# goto(${id})\n\ncurrentDir: ${_currentDir}\nparentDir: ${_parentDir}\npathQue: ${_pathQue}\npathNameMap: ${JSON.stringify(_pathNameMap)}`)
     }
 
     async openFile(id) {

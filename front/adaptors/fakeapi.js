@@ -4,19 +4,25 @@ class Api {
         // LOG(`ADT`, `${this.adaptorName}`, `Adaptor Created`)
     }
     get = async(path) => {
+        
+        let data
         try {
-            const data = await fetch(`http://localhost:5000/api/path/${path}`)
+            // await new Promise(res => setTimeout(res, 1000))
+            data = await fetch(`http://localhost:5000/api/path/${path}`)
         } catch(err) {
-            LOG(`ERR`, `SERVER FAILED`, 'Using Local Cache')
+            LOG(`ERR`, `HTTP FAIL`, `/api/path/${path} => Using Local Cache`)
         }
         
-        if (data.status === 200) {
+        if (data && data.status === 200) {
+            LOG(`API`, `HTTP SUCC`, `/api/path/${path}`)
             return await data.json()
-        } else {
+        } 
+        else {
+            LOG(`API`, `CACHE`, `Using Local Cache`)
             if (path === 'root' || path === 0) {
-                return await new Promise(res => setTimeout(res, 500, data.queryRoot))
+                return await new Promise(res => setTimeout(res, 500, _data.queryRoot))
             } else {
-                return await new Promise(res => setTimeout(res, 500, data[`query${path}`]))
+                return await new Promise(res => setTimeout(res, 500, _data[`query${path}`]))
             }
         }
     }
@@ -27,8 +33,8 @@ class Api {
             LOG(`ERR`, `SERVER FAILED`, 'Using Local Cache')
         }
         
-        if (data.status === 200) {
-            return await data.blob()
+        if (_data.status === 200) {
+            return await _data.blob()
         } else {
             const response = await fetch(path)
             const blob = await response.blob()
@@ -43,7 +49,7 @@ export {
     Api
 }
 
-const data = {
+const _data = {
     queryRoot: [
         {
             id: 1,
