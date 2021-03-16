@@ -4,16 +4,36 @@ class Api {
         // LOG(`ADT`, `${this.adaptorName}`, `Adaptor Created`)
     }
     get = async(path) => {
-        if (path === 'root' || path === 0) {
-            return await new Promise(res => setTimeout(res, 500, data.queryRoot))
+        try {
+            const data = await fetch(`http://localhost:5000/api/path/${path}`)
+        } catch(err) {
+            LOG(`ERR`, `SERVER FAILED`, 'Using Local Cache')
+        }
+        
+        if (data.status === 200) {
+            return await data.json()
         } else {
-            return await new Promise(res => setTimeout(res, 500, data[`query${path}`]))
+            if (path === 'root' || path === 0) {
+                return await new Promise(res => setTimeout(res, 500, data.queryRoot))
+            } else {
+                return await new Promise(res => setTimeout(res, 500, data[`query${path}`]))
+            }
         }
     }
     getFile = async(path) => {
-        const response = await fetch(path)
-        const blob = await response.blob()
-        return blob
+        try {
+            const data = await fetch(`http://localhost:5000/${path.replace('./', '')}`)
+        } catch(err) {
+            LOG(`ERR`, `SERVER FAILED`, 'Using Local Cache')
+        }
+        
+        if (data.status === 200) {
+            return await data.blob()
+        } else {
+            const response = await fetch(path)
+            const blob = await response.blob()
+            return blob
+        }
     }
 }
 
