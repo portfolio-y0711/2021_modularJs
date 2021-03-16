@@ -1,21 +1,16 @@
-const fs = require('fs')
-const path = require('path')
 const asyncHandler = require('./handler')
+const pathService = require('../services/index')
 
-const pathController = (() => {
+
+const pathController = (service) => {
     const getPathHandler = async(httpRequest) => {
         const { id } = httpRequest.params
-        let queryString
-        switch(id) {
-            case '0': 
-                queryString = 'queryRoot'
-                break
-            default:
-                queryString = `query${id}`
-                break
+        let result
+        try {
+            result = await service.getPath(id)
+        } catch(e) {
+            console.log(e)
         }
-        const data = fs.readFileSync(path.join(__dirname, '../data/files.json'), 'utf-8')
-        const result = await new Promise(res => setTimeout(res, 1000, (JSON.parse(data)[`${queryString}`])))
         const httpResponse = {
             headers: {
                 "Content-Type": "application/json",
@@ -29,6 +24,6 @@ const pathController = (() => {
     return {
         getPath
     }
-})()
+}
 
-module.exports = pathController
+module.exports = pathController(pathService)
